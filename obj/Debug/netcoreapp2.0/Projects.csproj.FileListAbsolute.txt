@@ -1,0 +1,10 @@
+/home/jmattis/Projects/obj/Debug/netcoreapp2.0/Projects.csproj.CoreCompileInputs.cache
+/home/jmattis/Projects/obj/Debug/netcoreapp2.0/Projects.AssemblyInfoInputs.cache
+/home/jmattis/Projects/obj/Debug/netcoreapp2.0/Projects.AssemblyInfo.cs
+/home/jmattis/Projects/bin/Debug/netcoreapp2.0/Projects.deps.json
+/home/jmattis/Projects/bin/Debug/netcoreapp2.0/Projects.runtimeconfig.json
+/home/jmattis/Projects/bin/Debug/netcoreapp2.0/Projects.runtimeconfig.dev.json
+/home/jmattis/Projects/bin/Debug/netcoreapp2.0/Projects.dll
+/home/jmattis/Projects/bin/Debug/netcoreapp2.0/Projects.pdb
+/home/jmattis/Projects/obj/Debug/netcoreapp2.0/Projects.dll
+/home/jmattis/Projects/obj/Debug/netcoreapp2.0/Projects.pdb
