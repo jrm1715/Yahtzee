@@ -664,28 +664,30 @@
     ]
   },
   "packageFolders": {
-    "/home/jmattis/.nuget/packages/": {},
-    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "C:\\Users\\JMattis\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/jmattis/Projects/Projects.csproj",
+      "projectUniqueName": "C:\\Users\\JMattis\\Repositories\\AlmostSequence\\Projects.csproj",
       "projectName": "Projects",
-      "projectPath": "/home/jmattis/Projects/Projects.csproj",
-      "packagesPath": "/home/jmattis/.nuget/packages/",
-      "outputPath": "/home/jmattis/Projects/obj/",
+      "projectPath": "C:\\Users\\JMattis\\Repositories\\AlmostSequence\\Projects.csproj",
+      "packagesPath": "C:\\Users\\JMattis\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JMattis\\Repositories\\AlmostSequence\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/home/jmattis/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\JMattis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

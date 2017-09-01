@@ -9,49 +9,47 @@ namespace Projects
         // Converts array to list and runs program
         static void Main(string[] args)
         {
-            int[] initialSequence = {-2, 8, 1};
+            int i = new int();
+            int[] initialSequence = {3, 5, 67, 98, 3};
             List<int> sequenceList = new List<int>(initialSequence);
-            AlmostSequence(ref sequenceList);
+            Console.WriteLine(AlmostSequence(ref sequenceList, i));
         }
-
         // Checks if items in list or almost Sequence
-        private static bool AlmostSequence(ref List<int> sequence)
-        {
-            if (IsSequence(ref sequence) == true)
+        private static bool AlmostSequence(ref List<int> sequence, int i)       
+         {            
+            if (IsSequential(ref sequence, out i)) 
             {
                 return true;
             } else {
-                RemoveItem(ref sequence);
+                RemoveItem(ref sequence, i);
+                IsSequential(ref sequence, out i);
+
+                if (IsSequential(ref sequence, out i) != true)
+                {
+                    return false;
+                }
             }
             return true;
-        }
-
-        // Compares each item in the list. If b > a and returns false if b < a 
-        private static bool IsSequence(ref List<int> sequence)
+        }  
+        private static bool IsSequential(ref List<int> sequence, out int i)
         {
-             for (int i = 0; i < sequence.Count - 1; i++)
-            {
+            for (i = 0; i < sequence.Count - 1; i++)
+            {                
                 if (sequence[i+1] > sequence[i])
                 {
                     continue;
                 } else {
-                    
-                    
                     return false;
-                }                
+                }                  
             }
             return true;
-        }
 
-        private static List<int> RemoveItem(ref List<int> sequence)
-        {
-            
+        } 
+        private static List<int> RemoveItem(ref List<int> sequence, int i)
+        {           
+            int itemAtIndex = sequence[i+1];
+            sequence.Remove(itemAtIndex); 
+            return sequence;                   
         }
     }
 }
-
-
-/* check if list is strictly sequence
-   if it is strictly sequence return true
-   else if sequence is not true
-   remove sequence[i+1] and re-check if sequene is strictly sequence */
