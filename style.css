@@ -9,11 +9,65 @@ body {
   background-color: #ff4d4d;
 }
 
-.dice {
+.wrapper {
   position: absolute;
-  top: 20px;
+  top: 10%;
+  left: 29%;
 }
 
-#dice-1 {  
-  right: 200px;
+.dice {
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+}
+
+#dice-1 {left: 10px;}
+#dice-2 {left: 170px;}
+#dice-3 {left: 330px;}
+#dice-4 {left: 490px;}
+#dice-5 {left: 650px;}
+
+img {
+  height: 150px;
+  width: 150px;
+  border-radius: 25px;
+}
+
+table {
+  border-collapse: collapse;
+  border: 3px solid rgb(255, 128, 128);
+  width: 300px;
+  height: 300px;
+
+}
+
+th {
+  border-collapse: collapse;
+  border: 3px solid rgb(255, 128, 128);
+  background-color: #ff9999;
+  font-size: 20px;
+  color: #cc0000;
+  width: 100px;
+}
+
+td {
+  border-collapse: collapse;
+  border: 3px solid rgb(255, 128, 128);
+  background-color: #ff9999;
+  color: #ff0000;
+  font-size: 18px;
+  text-align: center;
+  width: 100px;
+}
+
+.table-1 {
+  position: absolute;
+  top: 400px;
+}
+
+.table-2 {
+  position: absolute;
+  top: 400px;
+  left: 500px;
 }
