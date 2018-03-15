@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+  background-color: #ff4d4d;
+}
+
+.dice {
+  position: absolute;
+  top: 20px;
+}
+
+#dice-1 {  
+  right: 200px;
+}
