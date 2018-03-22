@@ -61,6 +61,10 @@ td {
   width: 100px;
 }
 
+td:hover {
+  background-color: #ffcccc;
+}
+
 .table-1 {
   position: absolute;
   top: 400px;
@@ -86,6 +90,6 @@ button {
 }
 
 button:hover {
-  background-color: #ffffff;
-  color: #ff9999;
+  background-color: #ffcccc;
+  color: #ff6666;
 }
