@@ -22,11 +22,11 @@ body {
   left: 50%;
 }
 
-#dice-1 {left: 10px;}
-#dice-2 {left: 170px;}
-#dice-3 {left: 330px;}
-#dice-4 {left: 490px;}
-#dice-5 {left: 650px;}
+#dice-0 {left: 10px;}
+#dice-1 {left: 170px;}
+#dice-2 {left: 330px;}
+#dice-3 {left: 490px;}
+#dice-4 {left: 650px;}
 
 img {
   height: 150px;
