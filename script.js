@@ -1,5 +1,4 @@
-let die, ones, twos, threes, fours, fives, sixes;
-
+let die, tableOne, sum;
 
 function generateRandNum(arry) {
   die = [];
@@ -10,40 +9,46 @@ function generateRandNum(arry) {
 }
 
 document.querySelector("#roll-dice").addEventListener("click", function() {
-  ones = 0;
-  twos = 0;
-  threes = 0;
-  fours = 0;
-  fives = 0;
-  sixes = 0;
+  tableOne = [0, 0, 0, 0, 0, 0, 0];
   generateRandNum(die);
   for (let i = 0; i < die.length; i++) {
     document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
   }
-  // TODO: Make this cleaner Maybe use a switch statement?
-  // numbers do not reset to 0 when number should be 0.
+  updateTableOneVariables(tableOne);
+});
+
+function updateTableOneVariables(tableOne) {
   for (let i = 0; i < die.length; i++) {
     if (die[i] === 1) {
-      ones += 1;
-      document.getElementById("td-ones").innerHTML = ones;
+      tableOne[0] += 1;
     }else if (die[i] === 2) {
-      twos += 2;
-      document.getElementById("td-twos").innerHTML = twos;
+      tableOne[1] += 2;
     }else if (die[i] === 3) {
-      threes += 3;
-      document.getElementById("td-threes").innerHTML = threes;
+      tableOne[2] += 3;
     }else if (die[i] === 4) {
-      fours += 4;
-      document.getElementById("td-fours").innerHTML = fours;
+      tableOne[3] += 4;
     }else if (die[i] === 5) {
-      fives += 5;
-      document.getElementById("td-fives").innerHTML = fives;
+      tableOne[4] += 5;
     }else if (die[i] === 6) {
-      sixes += 6;
-      document.getElementById("td-sixes").innerHTML = sixes;
+      tableOne[5] += 6;
     }
   }
-});
+  updateTableData(tableOne);
+}
+
+function updateTableData(tableOne) {
+  document.getElementById("td-ones").innerHTML = tableOne[0];
+  document.getElementById("td-twos").innerHTML = tableOne[1];
+  document.getElementById("td-threes").innerHTML = tableOne[2];
+  document.getElementById("td-fours").innerHTML = tableOne[3];
+  document.getElementById("td-fives").innerHTML = tableOne[4];
+  document.getElementById("td-sixes").innerHTML = tableOne[5];
+  document.getElementById("td-sum").innerHTML = tableOne.reduce(add);
+}
+
+function add(total, num) {
+  return total + num;
+}
 
 //document.getElementById("td-ones").innerHTML = "1";
 
