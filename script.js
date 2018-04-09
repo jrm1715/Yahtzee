@@ -1,3 +1,5 @@
+// TODO: Need to add Bonus value
+
 let die, tableOne, sum;
 
 function generateRandNum(arry) {
@@ -15,6 +17,7 @@ document.querySelector("#roll-dice").addEventListener("click", function() {
     document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
   }
   updateTableOneVariables(tableOne);
+  dieLoop(die);
 });
 
 function updateTableOneVariables(tableOne) {
@@ -43,12 +46,38 @@ function updateTableData(tableOne) {
   document.getElementById("td-fours").innerHTML = tableOne[3];
   document.getElementById("td-fives").innerHTML = tableOne[4];
   document.getElementById("td-sixes").innerHTML = tableOne[5];
+
+  // TODO: Needs to add rows 1-6 when every row has a value.
+  // This value will get displayed once this happens
   document.getElementById("td-sum").innerHTML = tableOne.reduce(add);
 }
 
 function add(total, num) {
   return total + num;
 }
+
+function dieLoop(die) {
+  // Check whether there are three identical numbered die
+
+  // iterate through the die array
+  // check if die[0] is equal to die[1]
+  let j;
+  let threes = 0;
+  for (let i = 0; i < die.length; i++) {
+    j = i + 1;
+    for (j; j < die.length; j++){
+      if (i === die.length) {
+        break;
+      }
+      if (die[i] === die[j]) {
+        threes += 1;
+      }
+    }
+  }
+  console.log(threes);
+}
+
+
 
 //document.getElementById("td-ones").innerHTML = "1";
 
