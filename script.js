@@ -1,6 +1,6 @@
 // TODO: Need to add Bonus value
 
-let die, tableOne, sum;
+let die, tableOne, tableTwo, sum;
 
 function generateRandNum(arry) {
   die = [];
@@ -12,12 +12,14 @@ function generateRandNum(arry) {
 
 document.querySelector("#roll-dice").addEventListener("click", function() {
   tableOne = [0, 0, 0, 0, 0, 0, 0];
+  tableTwo = [0, 0, 0, 0, 0, 0, 0, 0];
   generateRandNum(die);
   for (let i = 0; i < die.length; i++) {
     document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
   }
   updateTableOneVariables(tableOne);
   dieLoop(die);
+  updateTableData();
 });
 
 function updateTableOneVariables(tableOne) {
@@ -36,16 +38,19 @@ function updateTableOneVariables(tableOne) {
       tableOne[5] += 6;
     }
   }
-  updateTableData(tableOne);
 }
 
-function updateTableData(tableOne) {
+function updateTableData() {
   document.getElementById("td-ones").innerHTML = tableOne[0];
   document.getElementById("td-twos").innerHTML = tableOne[1];
   document.getElementById("td-threes").innerHTML = tableOne[2];
   document.getElementById("td-fours").innerHTML = tableOne[3];
   document.getElementById("td-fives").innerHTML = tableOne[4];
   document.getElementById("td-sixes").innerHTML = tableOne[5];
+
+  document.getElementById("three-of-a-kind").innerHTML = tableTwo[0];
+  document.getElementById("four-of-a-kind").innerHTML = tableTwo[1];
+  document.getElementById("full-house").innerHTML = tableTwo[2];
 
   // TODO: Needs to add rows 1-6 when every row has a value.
   // This value will get displayed once this happens
@@ -56,31 +61,47 @@ function add(total, num) {
   return total + num;
 }
 
+/*
+  Compare and iterate through the dice by some number. Whether that be
+  for a three of a kind, or a four of a kind. This function will compare and return
+  if a three of a kind or a four of a kind exists.
+*/
 function dieLoop(die) {
-  // Check whether there are three identical numbered die
-
-  // iterate through the die array
-  // check if die[0] is equal to die[1]
-  let j;
-  let threes = 0;
+  let fullHouseArry = [];
   for (let i = 0; i < die.length; i++) {
-    j = i + 1;
+    let j = i + 1;// Insures that it will not compare 'i' with itself.
+    let count = 1; // Set to 1 to include currently select die.
     for (j; j < die.length; j++){
       if (i === die.length) {
-        break;
+        break; // stop loop once at the end of the array.
       }
       if (die[i] === die[j]) {
-        threes += 1;
+        count += 1;
+        fullHouseArry.push(1);
+        checkForThreeOfAKind(count, i);
+        checkforFourOfAKind(count, i);
       }
     }
+    checkForFullHouse(fullHouseArry, i);
   }
-  console.log(threes);
 }
 
+function checkForThreeOfAKind(count, i) {
+  if (count === 3) {
+    tableTwo[0] = die[i] * count;
+  }
+}
 
+function checkforFourOfAKind(count, i) {
+  if (count === 4) {
+    tableTwo[1] = die[i] * count;
+  }
+}
 
-//document.getElementById("td-ones").innerHTML = "1";
-
-// Look through the die array and:
-// 1. If there are 1's. Add them up and store them in the One's variable.
-// 2. Do this for each number.
+function checkForFullHouse(fullHouseArry, i) {
+  if (fullHouseArry.length > 0) { // Prevents reducing an empty array
+    if (fullHouseArry.reduce(add) === 4) {
+      tableTwo[2] = die.reduce(add);
+    }
+  }
+}
