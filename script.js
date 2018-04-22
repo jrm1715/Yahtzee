@@ -20,6 +20,7 @@ document.querySelector("#roll-dice").addEventListener("click", function() {
   updateTableOneVariables(tableOne);
   dieLoop(die);
   updateTableData();
+
 });
 
 function updateTableOneVariables(tableOne) {
@@ -51,6 +52,7 @@ function updateTableData() {
   document.getElementById("three-of-a-kind").innerHTML = tableTwo[0];
   document.getElementById("four-of-a-kind").innerHTML = tableTwo[1];
   document.getElementById("full-house").innerHTML = tableTwo[2];
+  document.getElementById("sml-straight").innerHTML = tableTwo[3];
 
   // TODO: Needs to add rows 1-6 when every row has a value.
   // This value will get displayed once this happens
@@ -83,6 +85,7 @@ function dieLoop(die) {
       }
     }
     checkForFullHouse(fullHouseArry, i);
+    checkForSmlStrt(die);
   }
 }
 
@@ -104,4 +107,35 @@ function checkForFullHouse(fullHouseArry, i) {
       tableTwo[2] = die.reduce(add);
     }
   }
+}
+
+// TODO: make a function that checks if two arrays are identical
+function checkForSmlStrt(die) {
+  let straightScore = 30;
+  let indexAt = 3;
+  let straightOne = [1, 2, 3, 4];
+  let straightTwo = [2, 3, 4, 5];
+  let straightThree = [3, 4, 5, 6];
+  let sortedDie = die.sort();
+  let temp = sortedDie.slice();
+  let newArray = removeDuplicate(temp);
+  //let spliceDie = temp.splice(4, 1);
+  console.log(newArray);
+  if (newArray === straightOne) {
+    tableTwo.splice(indexAt, 0, straightScore);
+  } else if (newArray === straightTwo) {
+    tableTwo.splice(indexAt, 0, straightScore);
+  } else if (newArray === straightThree) {
+    tableTwo.splice(indexAt, 0, straightScore);
+  }
+}
+
+function removeDuplicate(temp) {
+  let uniqueArray = [];
+    for(let i = 0; i < temp.length; i++){
+        if(uniqueArray.indexOf(temp[i]) == -1){
+            uniqueArray.push(temp[i]);
+        }
+    }
+    return uniqueArray;
 }
