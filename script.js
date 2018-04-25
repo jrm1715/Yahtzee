@@ -14,6 +14,7 @@ document.querySelector("#roll-dice").addEventListener("click", function() {
   tableOne = [0, 0, 0, 0, 0, 0, 0];
   tableTwo = [0, 0, 0, 0, 0, 0, 0, 0];
   generateRandNum(die);
+  //die = [6, 6, 3, 6, 3];
   for (let i = 0; i < die.length; i++) {
     document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
   }
@@ -102,40 +103,58 @@ function checkforFourOfAKind(count, i) {
 }
 
 function checkForFullHouse(fullHouseArry, i) {
-  if (fullHouseArry.length > 0) { // Prevents reducing an empty array
+  if (fullHouseArry.length > 0) { // Prevent reducing an empty array
     if (fullHouseArry.reduce(add) === 4) {
       tableTwo[2] = die.reduce(add);
     }
   }
 }
 
-// TODO: make a function that checks if two arrays are identical
+// TODO: Bug where die = [6, 4, 2, 3, 5]. Look at removeAtIndex.
 function checkForSmlStrt(die) {
-  let straightScore = 30;
-  let indexAt = 3;
-  let straightOne = [1, 2, 3, 4];
-  let straightTwo = [2, 3, 4, 5];
-  let straightThree = [3, 4, 5, 6];
-  let sortedDie = die.sort();
-  let temp = sortedDie.slice();
-  let newArray = removeDuplicate(temp);
-  //let spliceDie = temp.splice(4, 1);
-  console.log(newArray);
-  if (newArray === straightOne) {
-    tableTwo.splice(indexAt, 0, straightScore);
-  } else if (newArray === straightTwo) {
-    tableTwo.splice(indexAt, 0, straightScore);
-  } else if (newArray === straightThree) {
-    tableTwo.splice(indexAt, 0, straightScore);
+  let strtScore = 30;
+  let strtOne = [1, 2, 3, 4];
+  let strtTwo = [2, 3, 4, 5];
+  let strtThree = [3, 4, 5, 6];
+  let temp = die.slice(); // Create a copy of the array
+  let newArray = removeDuplicate(temp.sort());
+  if (arraysEqual(newArray, strtOne) === true ||
+  arraysEqual(newArray, strtTwo) === true ||
+  arraysEqual(newArray, strtThree) === true) {
+    tableTwo[3] = strtScore;
   }
+}
+
+function arraysEqual (arrOne, arrTwo) {
+  if (arrOne.length !== arrTwo.length) {
+    return false;
+  }
+  for(let i = 0; i < arrOne.length; i++) {
+    if (arrOne[i] !== arrTwo[i]) {
+      return false;
+    }
+  }
+  return true;
 }
 
 function removeDuplicate(temp) {
   let uniqueArray = [];
     for(let i = 0; i < temp.length; i++){
-        if(uniqueArray.indexOf(temp[i]) == -1){
-            uniqueArray.push(temp[i]);
-        }
+      if(uniqueArray.indexOf(temp[i]) == -1){
+          uniqueArray.push(temp[i]);
+      }
     }
+    removeAtIndex(uniqueArray);
     return uniqueArray;
+}
+
+function removeAtIndex(uniqueArray) {
+  let testCaseOne = [ 1, 2, 3, 4, 6 ];
+  let testCaseTwo = [ 1, 3, 4, 5, 6 ];
+  if (arraysEqual(uniqueArray, testCaseOne) === true) {
+    uniqueArray.splice(4, 1);
+  } else if (arraysEqual(uniqueArray, testCaseTwo) === true) {
+    uniqueArray.splice(0, 1);
+  }
+  return uniqueArray;
 }
