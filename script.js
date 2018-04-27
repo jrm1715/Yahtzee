@@ -14,7 +14,7 @@ document.querySelector("#roll-dice").addEventListener("click", function() {
   tableOne = [0, 0, 0, 0, 0, 0, 0];
   tableTwo = [0, 0, 0, 0, 0, 0, 0, 0];
   generateRandNum(die);
-  //die = [6, 6, 3, 6, 3];
+  //die = [6, 4, 2, 3, 5]; //Test Array. Comment out if not in use
   for (let i = 0; i < die.length; i++) {
     document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
   }
@@ -110,7 +110,6 @@ function checkForFullHouse(fullHouseArry, i) {
   }
 }
 
-// TODO: Bug where die = [6, 4, 2, 3, 5]. Look at removeAtIndex.
 function checkForSmlStrt(die) {
   let strtScore = 30;
   let strtOne = [1, 2, 3, 4];
@@ -151,9 +150,12 @@ function removeDuplicate(temp) {
 function removeAtIndex(uniqueArray) {
   let testCaseOne = [ 1, 2, 3, 4, 6 ];
   let testCaseTwo = [ 1, 3, 4, 5, 6 ];
+  let testCaseThree = [2, 3, 4, 5, 6];
   if (arraysEqual(uniqueArray, testCaseOne) === true) {
     uniqueArray.splice(4, 1);
   } else if (arraysEqual(uniqueArray, testCaseTwo) === true) {
+    uniqueArray.splice(0, 1);
+  } else if (arraysEqual(uniqueArray, testCaseThree) === true) {
     uniqueArray.splice(0, 1);
   }
   return uniqueArray;
