@@ -13,8 +13,8 @@ function generateRandNum(arry) {
 document.querySelector("#roll-dice").addEventListener("click", function() {
   tableOne = [0, 0, 0, 0, 0, 0, 0];
   tableTwo = [0, 0, 0, 0, 0, 0, 0, 0];
-  //generateRandNum(die);
-  die = [2, 3, 4, 5, 6]; //Test Array. Comment out if not in use
+  generateRandNum(die);
+  //die = [2, 3, 4, 5, 6]; //Test Array. Comment out if not in use
   for (let i = 0; i < die.length; i++) {
     document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
   }
