@@ -7,21 +7,20 @@ function generateRandNum(arry) {
   for (let i = 0; i < 5; i++) {
     die.push(Math.floor(Math.random() * 6) + 1);
   }
-  return die;
+  return die.sort();
 }
 
 document.querySelector("#roll-dice").addEventListener("click", function() {
   tableOne = [0, 0, 0, 0, 0, 0, 0];
   tableTwo = [0, 0, 0, 0, 0, 0, 0, 0];
-  generateRandNum(die);
-  //die = [6, 4, 2, 3, 5]; //Test Array. Comment out if not in use
+  //generateRandNum(die);
+  die = [2, 3, 4, 5, 6]; //Test Array. Comment out if not in use
   for (let i = 0; i < die.length; i++) {
     document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
   }
   updateTableOneVariables(tableOne);
   dieLoop(die);
   updateTableData();
-
 });
 
 function updateTableOneVariables(tableOne) {
@@ -50,10 +49,11 @@ function updateTableData() {
   document.getElementById("td-fives").innerHTML = tableOne[4];
   document.getElementById("td-sixes").innerHTML = tableOne[5];
 
-  document.getElementById("three-of-a-kind").innerHTML = tableTwo[0];
-  document.getElementById("four-of-a-kind").innerHTML = tableTwo[1];
-  document.getElementById("full-house").innerHTML = tableTwo[2];
-  document.getElementById("sml-straight").innerHTML = tableTwo[3];
+  document.getElementById("td-three-of-a-kind").innerHTML = tableTwo[0];
+  document.getElementById("td-four-of-a-kind").innerHTML = tableTwo[1];
+  document.getElementById("td-full-house").innerHTML = tableTwo[2];
+  document.getElementById("td-sml-straight").innerHTML = tableTwo[3];
+  document.getElementById("td-lrg-straight").innerHTML = tableTwo[4];
 
   // TODO: Needs to add rows 1-6 when every row has a value.
   // This value will get displayed once this happens
@@ -85,9 +85,10 @@ function dieLoop(die) {
         checkforFourOfAKind(count, i);
       }
     }
-    checkForFullHouse(fullHouseArry, i);
-    checkForSmlStrt(die);
   }
+  checkForFullHouse(fullHouseArry);
+  checkForSmlStrt(die);
+  checkforLrgStrt(die);
 }
 
 function checkForThreeOfAKind(count, i) {
@@ -102,7 +103,7 @@ function checkforFourOfAKind(count, i) {
   }
 }
 
-function checkForFullHouse(fullHouseArry, i) {
+function checkForFullHouse(fullHouseArry) {
   if (fullHouseArry.length > 0) { // Prevent reducing an empty array
     if (fullHouseArry.reduce(add) === 4) {
       tableTwo[2] = die.reduce(add);
@@ -116,11 +117,21 @@ function checkForSmlStrt(die) {
   let strtTwo = [2, 3, 4, 5];
   let strtThree = [3, 4, 5, 6];
   let temp = die.slice(); // Create a copy of the array
-  let newArray = removeDuplicate(temp.sort());
+  let newArray = removeDuplicate(temp);
   if (arraysEqual(newArray, strtOne) === true ||
   arraysEqual(newArray, strtTwo) === true ||
   arraysEqual(newArray, strtThree) === true) {
     tableTwo[3] = strtScore;
+  }
+}
+
+function checkforLrgStrt(die) {
+  let lrgStraightOne = [1, 2, 3, 4, 5];
+  let lrgStraightTwo = [2, 3 ,4, 5, 6];
+  let lrgStrtScore = 40
+  if (arraysEqual(die, lrgStraightOne) === true ||
+  arraysEqual(die, lrgStraightTwo) === true) {
+    tableTwo[4] = lrgStrtScore;
   }
 }
 
