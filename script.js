@@ -14,7 +14,7 @@ document.querySelector("#roll-dice").addEventListener("click", function() {
   tableOne = [0, 0, 0, 0, 0, 0, 0];
   tableTwo = [0, 0, 0, 0, 0, 0, 0, 0];
   generateRandNum(die);
-  //die = [2, 3, 4, 5, 6]; //Test Array. Comment out if not in use
+  //die = [6, 6, 6, 6, 6]; //Test Array. Comment out if not in use
   for (let i = 0; i < die.length; i++) {
     document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
   }
@@ -54,6 +54,8 @@ function updateTableData() {
   document.getElementById("td-full-house").innerHTML = tableTwo[2];
   document.getElementById("td-sml-straight").innerHTML = tableTwo[3];
   document.getElementById("td-lrg-straight").innerHTML = tableTwo[4];
+  document.getElementById("td-chance").innerHTML = tableTwo[5];
+  document.getElementById("td-yahtzee").innerHTML = tableTwo[6];
 
   // TODO: Needs to add rows 1-6 when every row has a value.
   // This value will get displayed once this happens
@@ -83,12 +85,14 @@ function dieLoop(die) {
         fullHouseArry.push(1);
         checkForThreeOfAKind(count, i);
         checkforFourOfAKind(count, i);
+        checkForYahtzee(count, i);
       }
     }
   }
   checkForFullHouse(fullHouseArry);
   checkForSmlStrt(die);
   checkforLrgStrt(die);
+  checkForChance();
 }
 
 function checkForThreeOfAKind(count, i) {
@@ -132,6 +136,16 @@ function checkforLrgStrt(die) {
   if (arraysEqual(die, lrgStraightOne) === true ||
   arraysEqual(die, lrgStraightTwo) === true) {
     tableTwo[4] = lrgStrtScore;
+  }
+}
+
+function checkForChance() {
+  tableTwo[5] = die.reduce(add);
+}
+
+function checkForYahtzee(count, i) {
+  if (count === 5) {
+    tableTwo[6] = die[i] * count;
   }
 }
 
