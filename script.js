@@ -20,7 +20,6 @@ document.querySelector("#roll-dice").addEventListener("click", function() {
   updateTableOneVariables(tableOne);
   dieLoop(die);
   updateTableData();
-
 });
 
 function updateTableOneVariables(tableOne) {
@@ -109,7 +108,6 @@ function checkForFullHouse(fullHouseArry, i) {
   }
 }
 
-// TODO: make a function that checks if two arrays are identical
 function checkForSmlStrt(die) {
   let straightScore = 30;
   let indexAt = 3;
