@@ -7,13 +7,14 @@ function generateRandNum(arry) {
   for (let i = 0; i < 5; i++) {
     die.push(Math.floor(Math.random() * 6) + 1);
   }
-  return die;
+  return die.sort();
 }
 
 document.querySelector("#roll-dice").addEventListener("click", function() {
   tableOne = [0, 0, 0, 0, 0, 0, 0];
   tableTwo = [0, 0, 0, 0, 0, 0, 0, 0];
   generateRandNum(die);
+  //die = [2, 3, 4, 5, 6]; //Test Array. Comment out if not in use
   for (let i = 0; i < die.length; i++) {
     document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
   }
@@ -48,10 +49,11 @@ function updateTableData() {
   document.getElementById("td-fives").innerHTML = tableOne[4];
   document.getElementById("td-sixes").innerHTML = tableOne[5];
 
-  document.getElementById("three-of-a-kind").innerHTML = tableTwo[0];
-  document.getElementById("four-of-a-kind").innerHTML = tableTwo[1];
-  document.getElementById("full-house").innerHTML = tableTwo[2];
-  document.getElementById("sml-straight").innerHTML = tableTwo[3];
+  document.getElementById("td-three-of-a-kind").innerHTML = tableTwo[0];
+  document.getElementById("td-four-of-a-kind").innerHTML = tableTwo[1];
+  document.getElementById("td-full-house").innerHTML = tableTwo[2];
+  document.getElementById("td-sml-straight").innerHTML = tableTwo[3];
+  document.getElementById("td-lrg-straight").innerHTML = tableTwo[4];
 
   // TODO: Needs to add rows 1-6 when every row has a value.
   // This value will get displayed once this happens
@@ -83,9 +85,10 @@ function dieLoop(die) {
         checkforFourOfAKind(count, i);
       }
     }
-    checkForFullHouse(fullHouseArry, i);
-    checkForSmlStrt(die);
   }
+  checkForFullHouse(fullHouseArry);
+  checkForSmlStrt(die);
+  checkforLrgStrt(die);
 }
 
 function checkForThreeOfAKind(count, i) {
@@ -100,8 +103,8 @@ function checkforFourOfAKind(count, i) {
   }
 }
 
-function checkForFullHouse(fullHouseArry, i) {
-  if (fullHouseArry.length > 0) { // Prevents reducing an empty array
+function checkForFullHouse(fullHouseArry) {
+  if (fullHouseArry.length > 0) { // Prevent reducing an empty array
     if (fullHouseArry.reduce(add) === 4) {
       tableTwo[2] = die.reduce(add);
     }
@@ -109,31 +112,62 @@ function checkForFullHouse(fullHouseArry, i) {
 }
 
 function checkForSmlStrt(die) {
-  let straightScore = 30;
-  let indexAt = 3;
-  let straightOne = [1, 2, 3, 4];
-  let straightTwo = [2, 3, 4, 5];
-  let straightThree = [3, 4, 5, 6];
-  let sortedDie = die.sort();
-  let temp = sortedDie.slice();
+  let strtScore = 30;
+  let strtOne = [1, 2, 3, 4];
+  let strtTwo = [2, 3, 4, 5];
+  let strtThree = [3, 4, 5, 6];
+  let temp = die.slice(); // Create a copy of the array
   let newArray = removeDuplicate(temp);
-  //let spliceDie = temp.splice(4, 1);
-  console.log(newArray);
-  if (newArray === straightOne) {
-    tableTwo.splice(indexAt, 0, straightScore);
-  } else if (newArray === straightTwo) {
-    tableTwo.splice(indexAt, 0, straightScore);
-  } else if (newArray === straightThree) {
-    tableTwo.splice(indexAt, 0, straightScore);
+  if (arraysEqual(newArray, strtOne) === true ||
+  arraysEqual(newArray, strtTwo) === true ||
+  arraysEqual(newArray, strtThree) === true) {
+    tableTwo[3] = strtScore;
   }
+}
+
+function checkforLrgStrt(die) {
+  let lrgStraightOne = [1, 2, 3, 4, 5];
+  let lrgStraightTwo = [2, 3 ,4, 5, 6];
+  let lrgStrtScore = 40
+  if (arraysEqual(die, lrgStraightOne) === true ||
+  arraysEqual(die, lrgStraightTwo) === true) {
+    tableTwo[4] = lrgStrtScore;
+  }
+}
+
+function arraysEqual (arrOne, arrTwo) {
+  if (arrOne.length !== arrTwo.length) {
+    return false;
+  }
+  for(let i = 0; i < arrOne.length; i++) {
+    if (arrOne[i] !== arrTwo[i]) {
+      return false;
+    }
+  }
+  return true;
 }
 
 function removeDuplicate(temp) {
   let uniqueArray = [];
     for(let i = 0; i < temp.length; i++){
-        if(uniqueArray.indexOf(temp[i]) == -1){
-            uniqueArray.push(temp[i]);
-        }
+      if(uniqueArray.indexOf(temp[i]) == -1){
+          uniqueArray.push(temp[i]);
+      }
     }
+    removeAtIndex(uniqueArray);
     return uniqueArray;
+}
+
+function removeAtIndex(uniqueArray) {
+  let testCaseOne = [ 1, 2, 3, 4, 6 ];
+  let testCaseTwo = [ 1, 3, 4, 5, 6 ];
+  let testCaseThree = [2, 3, 4, 5, 6];
+  if (arraysEqual(uniqueArray, testCaseOne) === true) {
+    uniqueArray.splice(4, 1);
+  } else if (arraysEqual(uniqueArray, testCaseTwo) === true) {
+    uniqueArray.splice(0, 1);
+  } else if (arraysEqual(uniqueArray, testCaseThree) === true) {
+    uniqueArray.splice(0, 1);
+  }
+  return uniqueArray;
 }
