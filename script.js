@@ -1,5 +1,5 @@
 // TODO: Need to add Bonus value
-
+"use strict";
 let die, tableOne, tableTwo, sum;
 
 function generateRandNum(arry) {
