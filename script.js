@@ -1,14 +1,8 @@
 // TODO: Need to add Bonus value
 "use strict";
 let die, tableOne, tableTwo, sum;
+let diceImage = document.querySelectorAll(".dice");
 
-function generateRandNum(arry) {
-  die = [];
-  for (let i = 0; i < 5; i++) {
-    die.push(Math.floor(Math.random() * 6) + 1);
-  }
-  return die.sort();
-}
 
 document.querySelector("#roll-dice").addEventListener("click", function() {
   tableOne = [0, 0, 0, 0, 0, 0, 0];
@@ -22,6 +16,37 @@ document.querySelector("#roll-dice").addEventListener("click", function() {
   dieLoop(die);
   updateTableData();
 });
+
+selectDie();
+
+function generateRandNum(arry) {
+  die = [];
+  for (let i = 0; i < 5; i++) {
+    die.push(Math.floor(Math.random() * 6) + 1);
+  }
+  return die.sort();
+}
+
+function selectDie() {
+  for (let i = 0; i < diceImage.length; i++) {
+    let el = document.getElementById("dice-" + i);
+    diceImage[i].addEventListener("click", function() {
+      if (hasClass(el, "unselected") === true) {
+        this.setAttribute("style", "border: 3px solid red");
+        this.classList.remove("unselected");
+        this.classList.add("selected");
+      } else {
+        this.setAttribute("style", "border: none");
+        this.classList.remove("selected");
+        this.classList.add("unselected");
+      }
+    });
+  }
+}
+
+function hasClass(element, cls) {
+  return (" " + element.className + " ").indexOf(" " + cls + " ") > -1;
+}
 
 function updateTableOneVariables(tableOne) {
   for (let i = 0; i < die.length; i++) {
