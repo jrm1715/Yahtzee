@@ -1,6 +1,6 @@
-// TODO: Need to add Bonus value
 "use strict";
-let die, tableOne, tableTwo, sum;
+let tableOne, tableTwo, sum;
+let die = [1, 1, 1, 1, 1]
 let diceImage = document.querySelectorAll(".dice");
 
 
@@ -8,16 +8,13 @@ document.querySelector("#roll-dice").addEventListener("click", function() {
   tableOne = [0, 0, 0, 0, 0, 0, 0];
   tableTwo = [0, 0, 0, 0, 0, 0, 0, 0];
   generateRandNum(die);
-  //die = [6, 6, 6, 6, 6]; //Test Array. Comment out if not in use
   for (let i = 0; i < die.length; i++) {
     document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
   }
-  updateTableOneVariables(tableOne);
   dieLoop(die);
+  updateTableOneVariables(tableOne);
   updateTableData();
 });
-
-selectDie();
 
 function generateRandNum(arry) {
   die = [];
@@ -27,6 +24,9 @@ function generateRandNum(arry) {
   return die.sort();
 }
 
+/*
+  This is not complete. 
+*/
 function selectDie() {
   for (let i = 0; i < diceImage.length; i++) {
     let el = document.getElementById("dice-" + i);
@@ -35,6 +35,7 @@ function selectDie() {
         this.setAttribute("style", "border: 3px solid red");
         this.classList.remove("unselected");
         this.classList.add("selected");
+        updateDieArray(el, i);
       } else {
         this.setAttribute("style", "border: none");
         this.classList.remove("selected");
@@ -46,6 +47,12 @@ function selectDie() {
 
 function hasClass(element, cls) {
   return (" " + element.className + " ").indexOf(" " + cls + " ") > -1;
+}
+
+function updateDieArray(el, i) {
+  if (hasClass(el, "selected") === true) {
+    die[i] = 0;
+  }
 }
 
 function updateTableOneVariables(tableOne) {
@@ -210,3 +217,5 @@ function removeAtIndex(uniqueArray) {
   }
   return uniqueArray;
 }
+
+selectDie();
