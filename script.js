@@ -1,6 +1,6 @@
 "use strict";
 let tableOne, tableTwo, sum;
-let die = [1, 1, 1, 1, 1]
+let die = [1, 1, 1, 1, 1];
 let diceImage = document.querySelectorAll(".dice");
 
 
@@ -17,25 +17,24 @@ document.querySelector("#roll-dice").addEventListener("click", function() {
 });
 
 function generateRandNum(arry) {
-  die = [];
   for (let i = 0; i < 5; i++) {
-    die.push(Math.floor(Math.random() * 6) + 1);
+    if (hasClass(i, "unselected") === true) {
+      die[i] = Math.floor(Math.random() * 6) + 1;
+    }
   }
-  return die.sort();
 }
 
 /*
-  This is not complete. 
+  This is not complete.
 */
 function selectDie() {
   for (let i = 0; i < diceImage.length; i++) {
-    let el = document.getElementById("dice-" + i);
+
     diceImage[i].addEventListener("click", function() {
-      if (hasClass(el, "unselected") === true) {
+      if (hasClass(i, "unselected") === true) {
         this.setAttribute("style", "border: 3px solid red");
         this.classList.remove("unselected");
         this.classList.add("selected");
-        updateDieArray(el, i);
       } else {
         this.setAttribute("style", "border: none");
         this.classList.remove("selected");
@@ -45,14 +44,9 @@ function selectDie() {
   }
 }
 
-function hasClass(element, cls) {
+function hasClass(i, cls) {
+  let element = document.getElementById("dice-" + i);
   return (" " + element.className + " ").indexOf(" " + cls + " ") > -1;
-}
-
-function updateDieArray(el, i) {
-  if (hasClass(el, "selected") === true) {
-    die[i] = 0;
-  }
 }
 
 function updateTableOneVariables(tableOne) {
@@ -153,6 +147,7 @@ function checkForSmlStrt(die) {
   let strtTwo = [2, 3, 4, 5];
   let strtThree = [3, 4, 5, 6];
   let temp = die.slice(); // Create a copy of the array
+  temp.sort();
   let newArray = removeDuplicate(temp);
   if (arraysEqual(newArray, strtOne) === true ||
   arraysEqual(newArray, strtTwo) === true ||
