@@ -15,14 +15,20 @@ body {
   position: relative;
   margin: 0 auto;
   width: 50%;
+  height: 50%;
   margin-top: 20px;
-  left: 1.4%;
+}
+
+.dice-container {
+  position: absolute;
+  width: 810px;
+  margin: 0 auto;
+  left: 8%;
 }
 
 .dice {
   display: block;
   position: absolute;
-
 }
 
 #dice-0 {left: 10px;}
