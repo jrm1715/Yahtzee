@@ -4,30 +4,32 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
 body {
   background-color: #ff4d4d;
+  min-height: 100%;
 }
 
 .wrapper {
   position: relative;
-  top: 20%;
+  margin: 0 auto;
+  width: 50%;
+  margin-top: 20px;
+  left: 1.4%;
 }
 
 .dice {
   display: block;
   position: absolute;
-  top: 20px;
-  left: 50%;
+
 }
 
-#dice-0 {left: 22%;}
-#dice-1 {left: 33%;}
-#dice-2 {left: 44%;}
-#dice-3 {left: 55%;}
-#dice-4 {left: 66%;}
+#dice-0 {left: 10px;}
+#dice-1 {left: 170px;}
+#dice-2 {left: 330px;}
+#dice-3 {left: 490px;}
+#dice-4 {left: 650px;}
 
 img {
   height: 150px;
@@ -69,18 +71,17 @@ td:hover {
 .table-1 {
   position: absolute;
   top: 400px;
-  right: 25%;
 }
 
 .table-2 {
   position: absolute;
   top: 400px;
-  left: 25%;
+  left: 507px;
 }
 
 button {
   top: 255px;
-  left: 42.5%;
+  left: 305px;
   height: 80px;
   width: 200px;
   position: absolute;
@@ -94,4 +95,8 @@ button {
 button:hover {
   background-color: #ffcccc;
   color: #ff6666;
+}
+
+@media (max-width: 768px) {
+
 }
