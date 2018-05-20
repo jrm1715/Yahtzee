@@ -12,9 +12,8 @@ body {
 }
 
 .wrapper {
-  position: absolute;
-  top: 10%;
-  left: 29%;
+  position: relative;
+  top: 20%;
 }
 
 .dice {
@@ -24,11 +23,11 @@ body {
   left: 50%;
 }
 
-#dice-0 {left: 10px;}
-#dice-1 {left: 170px;}
-#dice-2 {left: 330px;}
-#dice-3 {left: 490px;}
-#dice-4 {left: 650px;}
+#dice-0 {left: 22%;}
+#dice-1 {left: 33%;}
+#dice-2 {left: 44%;}
+#dice-3 {left: 55%;}
+#dice-4 {left: 66%;}
 
 img {
   height: 150px;
@@ -70,17 +69,18 @@ td:hover {
 .table-1 {
   position: absolute;
   top: 400px;
+  right: 25%;
 }
 
 .table-2 {
   position: absolute;
   top: 400px;
-  left: 500px;
+  left: 25%;
 }
 
 button {
   top: 255px;
-  left: 300px;
+  left: 42.5%;
   height: 80px;
   width: 200px;
   position: absolute;

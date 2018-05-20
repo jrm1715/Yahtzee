@@ -24,12 +24,8 @@ function generateRandNum(arry) {
   }
 }
 
-/*
-  This is not complete.
-*/
 function selectDie() {
   for (let i = 0; i < diceImage.length; i++) {
-
     diceImage[i].addEventListener("click", function() {
       if (hasClass(i, "unselected") === true) {
         this.setAttribute("style", "border: 3px solid red");
