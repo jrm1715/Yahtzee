@@ -24,72 +24,9 @@ function generateRandNum(arry) {
   }
 }
 
-/*
-  This is not complete.
-*/
-function selectDie() {
-  for (let i = 0; i < diceImage.length; i++) {
-
-    diceImage[i].addEventListener("click", function() {
-      if (hasClass(i, "unselected") === true) {
-        this.setAttribute("style", "border: 3px solid red");
-        this.classList.remove("unselected");
-        this.classList.add("selected");
-      } else {
-        this.setAttribute("style", "border: none");
-        this.classList.remove("selected");
-        this.classList.add("unselected");
-      }
-    });
-  }
-}
-
 function hasClass(i, cls) {
   let element = document.getElementById("dice-" + i);
   return (" " + element.className + " ").indexOf(" " + cls + " ") > -1;
-}
-
-function updateTableOneVariables(tableOne) {
-  for (let i = 0; i < die.length; i++) {
-    if (die[i] === 1) {
-      tableOne[0] += 1;
-    }else if (die[i] === 2) {
-      tableOne[1] += 2;
-    }else if (die[i] === 3) {
-      tableOne[2] += 3;
-    }else if (die[i] === 4) {
-      tableOne[3] += 4;
-    }else if (die[i] === 5) {
-      tableOne[4] += 5;
-    }else if (die[i] === 6) {
-      tableOne[5] += 6;
-    }
-  }
-}
-
-function updateTableData() {
-  document.getElementById("td-ones").innerHTML = tableOne[0];
-  document.getElementById("td-twos").innerHTML = tableOne[1];
-  document.getElementById("td-threes").innerHTML = tableOne[2];
-  document.getElementById("td-fours").innerHTML = tableOne[3];
-  document.getElementById("td-fives").innerHTML = tableOne[4];
-  document.getElementById("td-sixes").innerHTML = tableOne[5];
-
-  document.getElementById("td-three-of-a-kind").innerHTML = tableTwo[0];
-  document.getElementById("td-four-of-a-kind").innerHTML = tableTwo[1];
-  document.getElementById("td-full-house").innerHTML = tableTwo[2];
-  document.getElementById("td-sml-straight").innerHTML = tableTwo[3];
-  document.getElementById("td-lrg-straight").innerHTML = tableTwo[4];
-  document.getElementById("td-chance").innerHTML = tableTwo[5];
-  document.getElementById("td-yahtzee").innerHTML = tableTwo[6];
-
-  // TODO: Needs to add rows 1-6 when every row has a value.
-  // This value will get displayed once this happens
-  document.getElementById("td-sum").innerHTML = tableOne.reduce(add);
-}
-
-function add(total, num) {
-  return total + num;
 }
 
 /*
@@ -133,12 +70,22 @@ function checkforFourOfAKind(count, i) {
   }
 }
 
+function checkForYahtzee(count, i) {
+  if (count === 5) {
+    tableTwo[6] = die[i] * count;
+  }
+}
+
 function checkForFullHouse(fullHouseArry) {
   if (fullHouseArry.length > 0) { // Prevent reducing an empty array
     if (fullHouseArry.reduce(add) === 4) {
       tableTwo[2] = die.reduce(add);
     }
   }
+}
+
+function add(total, num) {
+  return total + num;
 }
 
 function checkForSmlStrt(die) {
@@ -154,38 +101,6 @@ function checkForSmlStrt(die) {
   arraysEqual(newArray, strtThree) === true) {
     tableTwo[3] = strtScore;
   }
-}
-
-function checkforLrgStrt(die) {
-  let lrgStraightOne = [1, 2, 3, 4, 5];
-  let lrgStraightTwo = [2, 3 ,4, 5, 6];
-  let lrgStrtScore = 40
-  if (arraysEqual(die, lrgStraightOne) === true ||
-  arraysEqual(die, lrgStraightTwo) === true) {
-    tableTwo[4] = lrgStrtScore;
-  }
-}
-
-function checkForChance() {
-  tableTwo[5] = die.reduce(add);
-}
-
-function checkForYahtzee(count, i) {
-  if (count === 5) {
-    tableTwo[6] = die[i] * count;
-  }
-}
-
-function arraysEqual (arrOne, arrTwo) {
-  if (arrOne.length !== arrTwo.length) {
-    return false;
-  }
-  for(let i = 0; i < arrOne.length; i++) {
-    if (arrOne[i] !== arrTwo[i]) {
-      return false;
-    }
-  }
-  return true;
 }
 
 function removeDuplicate(temp) {
@@ -211,6 +126,87 @@ function removeAtIndex(uniqueArray) {
     uniqueArray.splice(0, 1);
   }
   return uniqueArray;
+}
+
+function checkforLrgStrt(die) {
+  let lrgStraightOne = [1, 2, 3, 4, 5];
+  let lrgStraightTwo = [2, 3 ,4, 5, 6];
+  let lrgStrtScore = 40
+  if (arraysEqual(die, lrgStraightOne) === true ||
+  arraysEqual(die, lrgStraightTwo) === true) {
+    tableTwo[4] = lrgStrtScore;
+  }
+}
+
+function arraysEqual (arrOne, arrTwo) {
+  if (arrOne.length !== arrTwo.length) {
+    return false;
+  }
+  for(let i = 0; i < arrOne.length; i++) {
+    if (arrOne[i] !== arrTwo[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function checkForChance() {
+  tableTwo[5] = die.reduce(add);
+}
+
+function updateTableOneVariables(tableOne) {
+  for (let i = 0; i < die.length; i++) {
+    if (die[i] === 1) {
+      tableOne[0] += 1;
+    }else if (die[i] === 2) {
+      tableOne[1] += 2;
+    }else if (die[i] === 3) {
+      tableOne[2] += 3;
+    }else if (die[i] === 4) {
+      tableOne[3] += 4;
+    }else if (die[i] === 5) {
+      tableOne[4] += 5;
+    }else if (die[i] === 6) {
+      tableOne[5] += 6;
+    }
+  }
+}
+
+function updateTableData() {
+  document.getElementById("td-ones").innerHTML = tableOne[0];
+  document.getElementById("td-twos").innerHTML = tableOne[1];
+  document.getElementById("td-threes").innerHTML = tableOne[2];
+  document.getElementById("td-fours").innerHTML = tableOne[3];
+  document.getElementById("td-fives").innerHTML = tableOne[4];
+  document.getElementById("td-sixes").innerHTML = tableOne[5];
+
+  document.getElementById("td-three-of-a-kind").innerHTML = tableTwo[0];
+  document.getElementById("td-four-of-a-kind").innerHTML = tableTwo[1];
+  document.getElementById("td-full-house").innerHTML = tableTwo[2];
+  document.getElementById("td-sml-straight").innerHTML = tableTwo[3];
+  document.getElementById("td-lrg-straight").innerHTML = tableTwo[4];
+  document.getElementById("td-chance").innerHTML = tableTwo[5];
+  document.getElementById("td-yahtzee").innerHTML = tableTwo[6];
+
+  // TODO: Needs to add rows 1-6 when every row has a value.
+  // This value will get displayed once this happens
+  document.getElementById("td-sum").innerHTML = tableOne.reduce(add);
+}
+
+function selectDie() {
+  for (let i = 0; i < diceImage.length; i++) {
+    diceImage[i].addEventListener("click", function() {
+      if (hasClass(i, "unselected") === true) {
+        this.setAttribute("style", "border: 3px solid red");
+        this.classList.remove("unselected");
+        this.classList.add("selected");
+      } else {
+        this.setAttribute("style", "border: none");
+        this.classList.remove("selected");
+        this.classList.add("unselected");
+      }
+    });
+  }
 }
 
 selectDie();
