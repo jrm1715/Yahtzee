@@ -2,6 +2,7 @@
 let tableOne, tableTwo, sum;
 let die = [1, 1, 1, 1, 1];
 let diceImage = document.querySelectorAll(".dice");
+let tdBox = document.querySelector(".td-box");
 
 
 document.querySelector("#roll-dice").addEventListener("click", function() {
@@ -207,6 +208,11 @@ function selectDie() {
       }
     });
   }
+}
+
+/* Called inside HTML element */
+function tableBoxClicked(clickedCell) {
+  let cellNumber = clickedCell;
 }
 
 selectDie();
