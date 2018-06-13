@@ -290,3 +290,4 @@ function updateScore() {
   }
 
   selectDie();
+// 
