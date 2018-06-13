@@ -2,7 +2,6 @@
 let tableOne, tableTwo, sum, cellValue;
 let die = [1, 1, 1, 1, 1];
 let diceImage = document.querySelectorAll(".dice");
-let tdBox = document.querySelector(".td-box");
 
 
 document.querySelector("#roll-dice").addEventListener("click", function() {
@@ -155,6 +154,9 @@ function checkForChance() {
   tableTwo[5] = die.reduce(add);
 }
 
+// TODO Check whether Cell has been selected or not. 
+// This way the tableOne array isn't always being
+// changed
 function updateTableOneVariables(tableOne) {
   for (let i = 0; i < die.length; i++) {
     if (die[i] === 1) {
@@ -210,7 +212,6 @@ function updateScore() {
   } else {
     tableOne[5] = cellValue;
   }
-
     updateTableTwoData();
   }
 
