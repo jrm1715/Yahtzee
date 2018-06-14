@@ -1,5 +1,6 @@
 "use strict";
-let tableOne, tableTwo, sum, cellValue;
+let tableOne, tableTwo, cellValue;
+let sum = 0;
 let die = [1, 1, 1, 1, 1];
 let diceImage = document.querySelectorAll(".dice");
 
@@ -280,6 +281,8 @@ function updateScore() {
   /* Called inside HTML element */
   function getCellValue(clickedCell, element) {
     cellValue = clickedCell;
+    sum += parseInt(clickedCell);
+    document.getElementById("td-sum").innerHTML = sum;
     updateClassList(element);
     element.setAttribute("style", "background-color: #ff8080");
   }
@@ -290,4 +293,4 @@ function updateScore() {
   }
 
   selectDie();
-// 
+//
