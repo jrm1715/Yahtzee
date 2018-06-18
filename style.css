@@ -46,7 +46,7 @@ img {
 table {
   border-collapse: collapse;
   border: 3px solid rgb(255, 128, 128);
-  width: 300px;
+  width: 350px;
   height: 300px;
 }
 
@@ -55,8 +55,9 @@ th {
   border: 3px solid rgb(255, 128, 128);
   background-color: #ff9999;
   font-size: 20px;
+  text-align: center;
   color: #cc0000;
-  width: 100px;
+  width: 100%;
 }
 
 td {
@@ -66,7 +67,7 @@ td {
   color: #ff0000;
   font-size: 18px;
   text-align: center;
-  width: 50px;
+  width: 100%;
 }
 
 td:hover {background-color: #ffcccc;}
