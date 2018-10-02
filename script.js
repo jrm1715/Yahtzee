@@ -26,8 +26,8 @@ function generateRandNum(arry) {
   }
 }
 
-function hasClass(element, cls) {
-  return (" " + element.className + " ").indexOf(" " + cls + " ") > -1;
+function hasClass(element, status) {
+  return (" " + element.className + " ").indexOf(" " + status + " ") > -1;
 }
 
 /*
