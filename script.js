@@ -16,7 +16,7 @@ document.querySelector("#roll-dice").addEventListener("click", function() {
   updateTableOneVariables(tableOne);
   updateScore();
 });
-//test
+//test 2
 function generateRandNum(arry) {
   for (let i = 0; i < 5; i++) {
     let element = document.getElementById("dice-" + i);
