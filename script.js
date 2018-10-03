@@ -2,20 +2,28 @@
 let tableOne, tableTwo, cellValue;
 let sum = 0;
 let die = [1, 1, 1, 1, 1];
+let numOfRolls = 0;
 let diceImage = document.querySelectorAll(".dice");
-
+const MAX_ROLLS = 3;
 
 document.querySelector("#roll-dice").addEventListener("click", function() {
+  rollDice();
+});
+
+function rollDice() {
   tableOne = [0, 0, 0, 0, 0, 0, 0];
   tableTwo = [0, 0, 0, 0, 0, 0, 0, 0];
-  generateRandNum(die);
-  for (let i = 0; i < die.length; i++) {
-    document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
+  if (numOfRolls !== MAX_ROLLS) {
+    generateRandNum(die);
+    for (let i = 0; i < die.length; i++) {
+      document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
+    }
+    dieLoop(die);
+    updateTableOneVariables(tableOne);
+    updateScore();
+    numOfRolls++;
   }
-  dieLoop(die);
-  updateTableOneVariables(tableOne);
-  updateScore();
-});
+}
 
 function generateRandNum(arry) {
   for (let i = 0; i < 5; i++) {
