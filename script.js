@@ -133,8 +133,11 @@ function checkforLrgStrt(die) {
   let lrgStraightOne = [1, 2, 3, 4, 5];
   let lrgStraightTwo = [2, 3, 4, 5, 6];
   let lrgStrtScore = 40
-  if (arraysEqual(die, lrgStraightOne) === true ||
-    arraysEqual(die, lrgStraightTwo) === true) {
+  let temp = die.slice();
+  temp.sort();
+  console.log(temp);
+  if (arraysEqual(temp, lrgStraightOne) === true ||
+    arraysEqual(temp, lrgStraightTwo) === true) {
     tableTwo[4] = lrgStrtScore;
   }
 }
