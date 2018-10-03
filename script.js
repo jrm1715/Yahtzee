@@ -33,7 +33,7 @@ function hasClass(element, status) {
 /*
   Compare and iterate through the dice by some number. Whether that be
   for a three of a kind, or a four of a kind. This function will compare and return
-  if a three of a kind or a four of a kind exists. Change 2
+  if a three of a kind or a four of a kind exists. 
 */
 function dieLoop(die) {
   let fullHouseArry = [];
