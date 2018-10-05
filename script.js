@@ -2,27 +2,46 @@
 let tableOne, tableTwo, cellValue;
 let sum = 0;
 let die = [1, 1, 1, 1, 1];
-let numOfRolls = 0;
+let playRolls = 0;
+let cpuRolls = 0;
 let diceImage = document.querySelectorAll(".dice");
 const MAX_ROLLS = 3;
 
-document.querySelector("#roll-dice").addEventListener("click", function() {
-  rollDice();
-});
+function startGame() {
+  console.log("PlayRolls: " + playRolls)
+  if (isPlayersTurn() === true) {
+    playersTurn();
+  } else {
+    cpuTurn();
+    console.log("CPUs Turn");
+  }
+}
+
+function playersTurn() {
+  document.querySelector("#roll-dice").addEventListener("click", function() {
+    rollDice();
+    playRolls++;
+  });
+}
+
+function isPlayersTurn() {
+  if (playRolls < MAX_ROLLS) {
+    return true
+  } else {
+    return false
+  }
+}
 
 function rollDice() {
   tableOne = [0, 0, 0, 0, 0, 0, 0];
   tableTwo = [0, 0, 0, 0, 0, 0, 0, 0];
-  if (numOfRolls !== MAX_ROLLS) {
-    generateRandNum(die);
-    for (let i = 0; i < die.length; i++) {
-      document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
-    }
-    dieLoop(die);
-    updateTableOneVariables(tableOne);
-    updateScore();
-    numOfRolls++;
+  generateRandNum(die);
+  for (let i = 0; i < die.length; i++) {
+    document.getElementById("dice-" + i).src = "images/dice-" + die[i] + ".png";
   }
+  dieLoop(die);
+  updateTableOneVariables(tableOne);
+  updateScore();
 }
 
 function generateRandNum(arry) {
@@ -143,7 +162,6 @@ function checkforLrgStrt(die) {
   let lrgStrtScore = 40
   let temp = die.slice();
   temp.sort();
-  console.log(temp);
   if (arraysEqual(temp, lrgStraightOne) === true ||
     arraysEqual(temp, lrgStraightTwo) === true) {
     tableTwo[4] = lrgStrtScore;
@@ -303,5 +321,6 @@ function updateScore() {
     element.classList.add("selected");
   }
 
+  startGame();
   selectDie();
 //
