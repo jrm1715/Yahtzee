@@ -8,23 +8,33 @@ let diceImage = document.querySelectorAll(".dice");
 const MAX_ROLLS = 3;
 
 function startGame() {
-  console.log("PlayRolls: " + playRolls)
-  if (isPlayersTurn() === true) {
-    playersTurn();
-  } else {
-    cpuTurn();
-    console.log("CPUs Turn");
-  }
+  // console.log("PlayRolls: " + playRolls)
+  // if (isPlayersTurn() === true) {
+  //
+  // } else {
+  //   cpuTurn();
+  //   console.log("CPUs Turn");
+  // }
+  playersTurn();
 }
 
 function playersTurn() {
+  console.log("PlayRolls: " + playRolls);
   document.querySelector("#roll-dice").addEventListener("click", function() {
-    rollDice();
-    playRolls++;
+    if (isPlayersTurn() === true) {
+      document.getElementById("roll-dice").disabled = false;
+      rollDice();
+      playRolls++;
+    } else {
+      document.getElementById("roll-dice").disabled = true;
+      cpuTurn();
+      console.log("CPUs Turn");
+    }
   });
 }
 
 function isPlayersTurn() {
+  console.log("Players turn");
   if (playRolls < MAX_ROLLS) {
     return true
   } else {
@@ -60,7 +70,7 @@ function hasClass(element, status) {
 /*
   Compare and iterate through the dice by some number. Whether that be
   for a three of a kind, or a four of a kind. This function will compare and return
-  if a three of a kind or a four of a kind exists. 
+  if a three of a kind or a four of a kind exists.
 */
 function dieLoop(die) {
   let fullHouseArry = [];
