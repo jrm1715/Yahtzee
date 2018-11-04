@@ -5,7 +5,7 @@ let die = [1, 1, 1, 1, 1];
 let playRolls = 0;
 let cpuRolls = 0;
 let diceImage = document.querySelectorAll(".dice");
-const MAX_ROLLS = 3;
+const MAX_ROLLS = 2;
 
 function startGame() {
   // console.log("PlayRolls: " + playRolls)
