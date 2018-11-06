@@ -5,7 +5,8 @@ let die = [1, 1, 1, 1, 1];
 let playRolls = 0;
 let cpuRolls = 0;
 let diceImage = document.querySelectorAll(".dice");
-const MAX_ROLLS = 2;
+let button = document.getElementById("roll-dice");
+const MAX_ROLLS = 1;
 
 function startGame() {
   // console.log("PlayRolls: " + playRolls)
@@ -15,30 +16,29 @@ function startGame() {
   //   cpuTurn();
   //   console.log("CPUs Turn");
   // }
-  playersTurn();
+  button.addEventListener("click",playersTurn);
 }
 
 function playersTurn() {
   console.log("PlayRolls: " + playRolls);
-  document.querySelector("#roll-dice").addEventListener("click", function() {
-    if (isPlayersTurn() === true) {
-      document.getElementById("roll-dice").disabled = false;
-      rollDice();
-      playRolls++;
-    } else {
-      document.getElementById("roll-dice").disabled = true;
-      cpuTurn();
-      console.log("CPUs Turn");
-    }
-  });
+  if (isPlayersTurn() === true) {
+    console.log("Players turn");
+    document.getElementById("roll-dice").disabled = false;
+    rollDice();
+    playRolls++;
+  } else {
+    button.removeEventListener("click", rollDice);
+    document.getElementById("roll-dice").disabled = true;
+    //cpuTurn();
+    console.log("CPUs Turn");
+  }
 }
 
 function isPlayersTurn() {
-  console.log("Players turn");
-  if (playRolls < MAX_ROLLS) {
-    return true
+  if (playRolls <= MAX_ROLLS) {
+    return true;
   } else {
-    return false
+    return false;
   }
 }
 
