@@ -9,13 +9,7 @@ let button = document.getElementById("roll-dice");
 const MAX_ROLLS = 3;
 
 function startGame() {
-  // console.log("PlayRolls: " + playRolls)
-  // if (isPlayersTurn() === true) {
-  //
-  // } else {
-  //   cpuTurn();
-  //   console.log("CPUs Turn");
-  // }
+
   button.addEventListener("click",playersTurn);
 }
 
@@ -25,11 +19,21 @@ function playersTurn() {
     console.log("Players turn");
     document.getElementById("roll-dice").disabled = false;
     rollDice();
+    playerSelectedPoints();
+    changeButtonText();
     console.log("PlayRolls: " + playRolls);
   } else {
     button.removeEventListener("click", rollDice);
     document.getElementById("roll-dice").disabled = true;
     cpuTurn();
+  }
+}
+
+
+
+function changeButtonText() {
+  if (playRolls >= 3) {
+    document.getElementById("roll-dice").innerHTML = "End Turn"
   }
 }
 
@@ -300,37 +304,37 @@ function updateScore() {
     }
   }
 
-  function selectDie() {
-    for (let i = 0; i < diceImage.length; i++) {
-      let element = document.getElementById("dice-" + i);
-      diceImage[i].addEventListener("click", function() {
-        if (hasClass(element, "unselected") === true) {
-          this.setAttribute("style", "border: 3px solid red");
-          this.classList.remove("unselected");
-          this.classList.add("selected");
-        } else {
-          this.setAttribute("style", "border: none");
-          this.classList.remove("selected");
-          this.classList.add("unselected");
-        }
-      });
-    }
+function selectDie() {
+  for (let i = 0; i < diceImage.length; i++) {
+    let element = document.getElementById("dice-" + i);
+    diceImage[i].addEventListener("click", function() {
+      if (hasClass(element, "unselected") === true) {
+        this.setAttribute("style", "border: 3px solid red");
+        this.classList.remove("unselected");
+        this.classList.add("selected");
+      } else {
+        this.setAttribute("style", "border: none");
+        this.classList.remove("selected");
+        this.classList.add("unselected");
+      }
+    });
   }
+}
 
-  /* Called inside HTML element */
-  function getCellValue(clickedCell, element) {
-    cellValue = clickedCell;
-    sum += parseInt(clickedCell);
-    document.getElementById("td-sum").innerHTML = sum;
-    updateClassList(element);
-    element.setAttribute("style", "background-color: #ff8080");
-  }
+/* Called inside HTML element */
+function getCellValue(clickedCell, element) {
+  cellValue = clickedCell;
+  sum += parseInt(clickedCell);
+  document.getElementById("td-sum").innerHTML = sum;
+  updateClassList(element);
+  element.setAttribute("style", "background-color: #ff8080");
+}
 
-  function updateClassList(element) {
-    element.classList.remove("unselected");
-    element.classList.add("selected");
-  }
+function updateClassList(element) {
+  element.classList.remove("unselected");
+  element.classList.add("selected");
+}
 
-  startGame();
-  selectDie();
+startGame();
+selectDie();
 //
