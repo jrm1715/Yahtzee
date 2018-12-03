@@ -6,7 +6,7 @@ let playRolls = 0;
 let cpuRolls = 0;
 let diceImage = document.querySelectorAll(".dice");
 let button = document.getElementById("roll-dice");
-const MAX_ROLLS = 4;
+const MAX_ROLLS = 3;
 
 function startGame() {
   // console.log("PlayRolls: " + playRolls)
@@ -20,7 +20,6 @@ function startGame() {
 }
 
 function playersTurn() {
-  playRolls++;
   console.log("Clicked!");
   if (isPlayersTurn() === true) {
     console.log("Players turn");
@@ -36,6 +35,7 @@ function playersTurn() {
 
 function isPlayersTurn() {
   if (playRolls < MAX_ROLLS) {
+    playRolls++;
     return true;
   } else {
     return false;
