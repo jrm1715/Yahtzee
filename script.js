@@ -328,6 +328,8 @@ function getCellValue(clickedCell, element) {
     element.classList.add("selected");
     element.setAttribute("style", "background-color: #ff8080");
   } else if (hasClass(element, "selected")) {
+    sum -= parseInt(clickedCell);
+    document.getElementById("td-sum").innerHTML = sum;
     element.setAttribute("style", "background-color: #ff9999");
     element.classList.remove("selected");
     element.classList.add("unselected");
