@@ -19,7 +19,6 @@ function playersTurn() {
     console.log("Players turn");
     document.getElementById("roll-dice").disabled = false;
     rollDice();
-    playerSelectedPoints();
     changeButtonText();
     console.log("PlayRolls: " + playRolls);
   } else {
@@ -28,8 +27,6 @@ function playersTurn() {
     cpuTurn();
   }
 }
-
-
 
 function changeButtonText() {
   if (playRolls >= 3) {
@@ -259,50 +256,50 @@ function updateScore() {
     updateTableTwoData();
   }
 
-  function updateTableTwoData() {
-    let cellToK = document.getElementById("td-three-of-a-kind");
-    let cellFoK = document.getElementById("td-four-of-a-kind");
-    let cellFlHs = document.getElementById("td-full-house");
-    let cellSmlStrt = document.getElementById("td-sml-straight");
-    let cellLrgStrt = document.getElementById("td-lrg-straight");
-    let cellChance = document.getElementById("td-chance");
-    let cellYaht = document.getElementById("td-yahtzee");
-    if (hasClass(cellToK, "unselected") === true) {
-      document.getElementById("td-three-of-a-kind").innerHTML = tableTwo[0];
-    } else {
-      tableTwo[0] = cellValue;
-    }
-    if (hasClass(cellFoK, "unselected") === true) {
-      document.getElementById("td-four-of-a-kind").innerHTML = tableTwo[1];
-    } else {
-      tableTwo[1] = cellValue;
-    }
-    if (hasClass(cellFlHs, "unselected") === true) {
-      document.getElementById("td-full-house").innerHTML = tableTwo[2];
-    } else {
-      tableTwo[2] = cellValue;
-    }
-    if (hasClass(cellSmlStrt, "unselected") === true) {
-      document.getElementById("td-sml-straight").innerHTML = tableTwo[3];
-    } else {
-      tableTwo[3] = cellValue;
-    }
-    if (hasClass(cellLrgStrt, "unselected") === true) {
-      document.getElementById("td-lrg-straight").innerHTML = tableTwo[4];
-    } else {
-      tableTwo[4] = cellValue;
-    }
-    if (hasClass(cellChance, "unselected") === true) {
-      document.getElementById("td-chance").innerHTML = tableTwo[5];
-    } else {
-      tableTwo[5] = cellValue;
-    }
-    if (hasClass(cellYaht, "unselected") === true) {
-      document.getElementById("td-yahtzee").innerHTML = tableTwo[6];
-    } else {
-      tableTwo[6] = cellValue;
-    }
+function updateTableTwoData() {
+  let cellToK = document.getElementById("td-three-of-a-kind");
+  let cellFoK = document.getElementById("td-four-of-a-kind");
+  let cellFlHs = document.getElementById("td-full-house");
+  let cellSmlStrt = document.getElementById("td-sml-straight");
+  let cellLrgStrt = document.getElementById("td-lrg-straight");
+  let cellChance = document.getElementById("td-chance");
+  let cellYaht = document.getElementById("td-yahtzee");
+  if (hasClass(cellToK, "unselected") === true) {
+    document.getElementById("td-three-of-a-kind").innerHTML = tableTwo[0];
+  } else {
+    tableTwo[0] = cellValue;
   }
+  if (hasClass(cellFoK, "unselected") === true) {
+    document.getElementById("td-four-of-a-kind").innerHTML = tableTwo[1];
+  } else {
+    tableTwo[1] = cellValue;
+  }
+  if (hasClass(cellFlHs, "unselected") === true) {
+    document.getElementById("td-full-house").innerHTML = tableTwo[2];
+  } else {
+    tableTwo[2] = cellValue;
+  }
+  if (hasClass(cellSmlStrt, "unselected") === true) {
+    document.getElementById("td-sml-straight").innerHTML = tableTwo[3];
+  } else {
+    tableTwo[3] = cellValue;
+  }
+  if (hasClass(cellLrgStrt, "unselected") === true) {
+    document.getElementById("td-lrg-straight").innerHTML = tableTwo[4];
+  } else {
+    tableTwo[4] = cellValue;
+  }
+  if (hasClass(cellChance, "unselected") === true) {
+    document.getElementById("td-chance").innerHTML = tableTwo[5];
+  } else {
+    tableTwo[5] = cellValue;
+  }
+  if (hasClass(cellYaht, "unselected") === true) {
+    document.getElementById("td-yahtzee").innerHTML = tableTwo[6];
+  } else {
+    tableTwo[6] = cellValue;
+  }
+}
 
 function selectDie() {
   for (let i = 0; i < diceImage.length; i++) {
@@ -323,11 +320,18 @@ function selectDie() {
 
 /* Called inside HTML element */
 function getCellValue(clickedCell, element) {
-  cellValue = clickedCell;
-  sum += parseInt(clickedCell);
-  document.getElementById("td-sum").innerHTML = sum;
-  updateClassList(element);
-  element.setAttribute("style", "background-color: #ff8080");
+  if (hasClass(element, "unselected")) {
+    cellValue = clickedCell;
+    sum += parseInt(clickedCell);
+    document.getElementById("td-sum").innerHTML = sum;
+    element.classList.remove("unselected");
+    element.classList.add("selected");
+    element.setAttribute("style", "background-color: #ff8080");
+  } else if (hasClass(element, "selected")) {
+    element.setAttribute("style", "background-color: #ff9999");
+    element.classList.remove("selected");
+    element.classList.add("unselected");
+  }
 }
 
 function updateClassList(element) {
