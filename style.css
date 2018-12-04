@@ -19,6 +19,13 @@ body {
   align-items: center;
 }
 
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 62px;
+  margin: 2% 0 2% 0;
+}
+
 .dice-container {
   grid-column: 3 / 7;
   grid-row: 1;

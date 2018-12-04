@@ -1,0 +1,4 @@
+TODO
+
+1. When the play selects a cell in one of the tables. Give the player the option to make that the players
+  final choice and end their turn. 
