@@ -334,11 +334,6 @@ function getCellValue(clickedCell, element) {
   }
 }
 
-function updateClassList(element) {
-  element.classList.remove("unselected");
-  element.classList.add("selected");
-}
-
 startGame();
 selectDie();
 //
