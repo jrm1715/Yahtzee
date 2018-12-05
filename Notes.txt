@@ -1,4 +1,10 @@
-TODO
+TODO:
 
-1. When the play selects a cell in one of the tables. Give the player the option to make that the players
-  final choice and end their turn. 
+1. When the player selects a cell in one of the tables. Give the player the option to make that the players
+  final choice and end their turn.
+  *NOTE*: Created a function for when the player clicks a cell, the button text will change to say "End Turn". This will also change
+  back to "Roll" when the player unselects that cell. If the player hits the roll button three times, the button text will change to "End Turn".
+  *BUG* When the player hits Roll 3 times. The button text will change to "End Turn". If the player then selects a cell, and then unselects that cell, the button
+  text will change back to "Roll".
+
+2.

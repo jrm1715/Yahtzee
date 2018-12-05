@@ -19,7 +19,7 @@ function playersTurn() {
     console.log("Players turn");
     document.getElementById("roll-dice").disabled = false;
     rollDice();
-    changeButtonText();
+    changeButtonText("End Turn");
     console.log("PlayRolls: " + playRolls);
   } else {
     button.removeEventListener("click", rollDice);
@@ -28,9 +28,10 @@ function playersTurn() {
   }
 }
 
-function changeButtonText() {
-  if (playRolls >= 3) {
-    document.getElementById("roll-dice").innerHTML = "End Turn"
+function changeButtonText(string, cellSelected) {
+  console.log("cellSelected: " + cellSelected)
+  if (playRolls >= 3 || cellSelected === true || cellSelected === false) {
+    document.getElementById("roll-dice").innerHTML = string
   }
 }
 
@@ -320,6 +321,7 @@ function selectDie() {
 
 /* Called inside HTML element */
 function getCellValue(clickedCell, element) {
+  let cellSelected;
   if (hasClass(element, "unselected")) {
     cellValue = clickedCell;
     sum += parseInt(clickedCell);
@@ -327,15 +329,18 @@ function getCellValue(clickedCell, element) {
     element.classList.remove("unselected");
     element.classList.add("selected");
     element.setAttribute("style", "background-color: #ff8080");
+    cellSelected = true;
+    changeButtonText("End Turn", cellSelected);
   } else if (hasClass(element, "selected")) {
     sum -= parseInt(clickedCell);
     document.getElementById("td-sum").innerHTML = sum;
     element.setAttribute("style", "background-color: #ff9999");
     element.classList.remove("selected");
     element.classList.add("unselected");
+    cellSelected = false;
+    changeButtonText("Roll", cellSelected);
   }
 }
 
 startGame();
 selectDie();
-//
